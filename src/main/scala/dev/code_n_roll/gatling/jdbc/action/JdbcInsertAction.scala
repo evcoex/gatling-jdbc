@@ -35,7 +35,7 @@ case class JdbcInsertAction(requestName: Expression[String],
     } yield {
       Future {
         DB autoCommit { implicit session =>
-          SQL(sql).execute().apply()
+          SQL(sql).execute()
         }
       }
     }

@@ -2,11 +2,10 @@ package dev.code_n_roll.gatling.jdbc.check
 
 import java.sql.ResultSet
 import java.util
-
 import dev.code_n_roll.gatling.jdbc.JdbcCheck
 import io.gatling.commons.validation.{Failure, Validation}
 import io.gatling.core.check.{Check, CheckResult}
-import io.gatling.core.session.Session
+import io.gatling.core.session.{Expression, Session}
 import scalikejdbc.WrappedResultSet
 
 import scala.collection.mutable
@@ -22,4 +21,8 @@ case class JdbcSimpleCheck(func: List[Map[String, Any]] => Boolean) extends Jdbc
       Failure("JDBC check failed")
     }
   }
+
+  override def checkIf(condition: Expression[Boolean]): Check[List[Map[String, Any]]] = ???
+
+  override def checkIf(condition: (List[Map[String, Any]], Session) => Validation[Boolean]): Check[List[Map[String, Any]]] = ???
 }

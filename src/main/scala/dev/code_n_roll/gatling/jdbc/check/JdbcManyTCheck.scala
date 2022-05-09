@@ -3,6 +3,7 @@ package dev.code_n_roll.gatling.jdbc.check
 import dev.code_n_roll.gatling.jdbc.JdbcCheck
 import dev.code_n_roll.gatling.jdbc.Predef.ManyAnyResult
 import io.gatling.commons.validation.{Validation, _}
+import io.gatling.core.check.CheckBuilder.Find
 import io.gatling.core.check._
 import io.gatling.core.session.{Expression, _}
 
@@ -28,7 +29,7 @@ object JdbcManyTCheck {
       override def arity: String = "findAll"
     }.expressionSuccess
 
-  def manyTResults[T] = new DefaultFindCheckBuilder[JdbcManyTCheckType, List[T], List[T]](
+  def manyTResults[T] = new Find.Default[JdbcManyTCheckType, List[T], List[T]](
     manyTExtractor,
     displayActualValue = true
   )

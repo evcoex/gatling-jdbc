@@ -29,7 +29,7 @@ case class JdbcDropTableAction(requestName: Expression[String],
         val query = s"DROP TABLE $name"
         val future = Future {
           DB autoCommit { implicit session =>
-            SQL(query).map(rs => rs.toMap()).execute().apply()
+            SQL(query).map(rs => rs.toMap()).execute()
           }
         }
         future.onComplete(result => {

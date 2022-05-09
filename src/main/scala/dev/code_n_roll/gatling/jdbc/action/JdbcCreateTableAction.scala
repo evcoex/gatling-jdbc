@@ -41,7 +41,7 @@ case class JdbcCreateTableAction(requestName: Expression[String],
         val query = s"CREATE TABLE $name($columnStrings)"
         val future = Future {
           DB autoCommit { implicit session =>
-            SQL(query).execute().apply()
+            SQL(query).execute()
           }
         }
         future.onComplete(result => {

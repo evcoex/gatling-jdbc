@@ -1,10 +1,10 @@
 package dev.code_n_roll.gatling.jdbc.check
 
 import java.util
-
 import dev.code_n_roll.gatling.jdbc.JdbcCheck
 import dev.code_n_roll.gatling.jdbc.Predef.ManyAnyResult
 import io.gatling.commons.validation.{Validation, _}
+import io.gatling.core.check.CheckBuilder.Find
 import io.gatling.core.check._
 import io.gatling.core.session._
 
@@ -30,7 +30,7 @@ object JdbcSingleTCheck {
       override def arity: String = "single"
     }.expressionSuccess
 
-  def singleTResult[T] = new DefaultFindCheckBuilder[JdbcSingleTCheckType, T, T](
+  def singleTResult[T] = new Find.Default[JdbcSingleTCheckType, T, T](
     singleTExtractor[T],
     displayActualValue = true
   )

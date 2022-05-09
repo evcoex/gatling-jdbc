@@ -36,7 +36,7 @@ case class JdbcDeletionAction(requestName: Expression[String],
       sqlString <- Success(s"DELETE FROM $tableString $wherePart")
     } yield Future {
         DB autoCommit { implicit session =>
-          SQL(sqlString).map(rs => rs.toMap()).execute().apply()
+          SQL(sqlString).map(rs => rs.toMap()).execute()
         }
       }
 
